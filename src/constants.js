@@ -2,12 +2,12 @@
 export const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export const API_ENDPOINTS = {
-    PACKAGES: '/packages',
-    CATEGORIES: '/categories',
-    ENQUIRIES: '/enquiries',
-    BLOGS: '/blogs',
-    GALLERY: '/gallery',
-    BOOKINGS: '/bookings',
+    PACKAGES: 'packages',
+    CATEGORIES: 'categories',
+    ENQUIRIES: 'enquiries',
+    BLOGS: 'blogs',
+    GALLERY: 'gallery',
+    BOOKINGS: 'bookings',
 };
 
 // Theme Colors
