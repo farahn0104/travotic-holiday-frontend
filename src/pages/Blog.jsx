@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 const Blog = () => {
     const dispatch = useDispatch();
     const { items: blogs, loading } = useSelector((state) => state.blogs);
-
     useEffect(() => {
         dispatch(fetchBlogs());
-    }, [dispatch]);
-
+    }, [dispatch])
+    
+    console.log(blogs)
     return (
         <div className="pt-20 min-h-screen">
             <div className="bg-gray-900 text-white py-20 text-center">

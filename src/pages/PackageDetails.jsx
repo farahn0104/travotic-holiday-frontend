@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPackages } from '../features/packages/packagesSlice';
 import axios from 'axios';
+import { API_BASE_URL, API_ENDPOINTS } from '../constants';
 import { MapPin, Clock, Star, Heart, Share2, CheckCircle, X, User, Mail, Phone, Calendar, ArrowLeft, Check } from 'lucide-react';
 
 const PackageDetails = () => {
@@ -57,7 +58,7 @@ const PackageDetails = () => {
     const handleEnquirySubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/enquiries', {
+            await axios.post(`${API_BASE_URL}${API_ENDPOINTS.ENQUIRIES}`, {
                 packageId: pkg.id,
                 packageTitle: pkg.title,
                 ...enquiryForm,

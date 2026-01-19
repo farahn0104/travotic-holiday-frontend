@@ -6,7 +6,8 @@ export const fetchBlogs = createAsyncThunk(
     'blogs/fetchBlogs',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${API_BASE_URL}/blogs`); // Assuming API_ENDPOINTS.BLOGS might not exist, using hardcoded or derived path
+            const response = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.BLOGS}`);
+            // Assuming API_ENDPOINTS.BLOGS might not exist, using hardcoded or derived path
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data || 'Failed to fetch blogs');

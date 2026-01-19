@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPackages } from '../features/packages/packagesSlice';
 import { Filter, MapPin, Clock, Star, Search } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const AllPackages = () => {
-    const [packages, setPackages] = useState([]);
+    const dispatch = useDispatch();
+    const { items: packages, loading } = useSelector((state) => state.packages);
     const [filteredPackages, setFilteredPackages] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     // Filters
     const [priceRange, setPriceRange] = useState(200000);
@@ -29,22 +30,13 @@ const AllPackages = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchPackages = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/packages');
-                setPackages(response.data);
-                // Initial filtering will happen in the next useEffect
-            } catch (error) {
-                console.error("Error fetching packages:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPackages();
-    }, []);
+        if (packages.length === 0) {
+            dispatch(fetchPackages());
+        }
+    }, [dispatch, packages.length]);
 
     useEffect(() => {
-        let result = packages;
+        let result = Array.isArray(packages) ? packages : [];
 
         // Filter by Price
         result = result.filter(pkg => pkg.price <= priceRange);

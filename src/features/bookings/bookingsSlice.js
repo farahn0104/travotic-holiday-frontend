@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { API_BASE_URL } from '../../constants';
+import { API_BASE_URL, API_ENDPOINTS } from '../../constants';
 
 export const fetchBookings = createAsyncThunk(
     'bookings/fetchBookings',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${API_BASE_URL}/bookings`);
+            const response = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.BOOKINGS}`);
+
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data || 'Failed to fetch bookings');

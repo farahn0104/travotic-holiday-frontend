@@ -3,8 +3,11 @@ import Categories from '../components/Categories';
 import FeaturedPackages from '../components/FeaturedPackages';
 import BookingForm from '../components/BookingForm';
 import TrendingDestinations from '../components/TrendingDestinations';
+import { API_BASE_URL } from '../constants';
 
 const Home = () => {
+
+    
     return (
         <>
             <Hero />
